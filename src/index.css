@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-ink: #152c26;
+  --color-muted: #435950;
+  --color-brand: #125846;
+  --color-line: #dbe6e0;
+  --color-wash: #f5f8f6;
+  --color-mint: #e1f2ea;
+}
+
+@layer base {
+  body {
+    @apply bg-wash font-sans text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .panel { @apply min-w-0 rounded-2xl border border-line bg-white p-4 sm:p-6; }
+  .panel h2 { @apply text-lg font-semibold; }
+  .panel dt { @apply text-sm text-muted; }
+  .panel dd { @apply mt-1 text-lg font-semibold tabular-nums; }
+  .field { @apply grid min-w-0 gap-1 text-sm font-medium; }
+  .field :is(input, select, textarea) { @apply min-w-0 w-full rounded-lg border border-line bg-white px-3 py-2 text-base text-ink; }
+  .button { @apply inline-flex min-h-10 items-center justify-center rounded-lg border border-line bg-white px-3 py-2 text-sm font-medium text-ink hover:bg-wash disabled:cursor-not-allowed disabled:opacity-50; }
+  .primary { @apply border-brand bg-brand text-white hover:bg-ink; }
+  .danger, .error { @apply text-red-800; }
+  .text-link { @apply font-medium text-brand underline underline-offset-4; }
+}
