@@ -1,0 +1,26 @@
+project_id = "miciclo-local"
+
+[api]
+enabled = true
+port = 54321
+
+[db]
+port = 54322
+major_version = 17
+
+[db.seed]
+enabled = false
+
+[local_smtp]
+enabled = true
+port = 54324
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173/recuperar-clave"]
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+max_frequency = "1s"

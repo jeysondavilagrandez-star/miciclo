@@ -34,3 +34,9 @@ en el navegador y se recuperan al recargar en la misma dirección de desarrollo.
 Puedes crear, archivar o eliminar ciclos y gestionar sus cursos desde **Ciclos y cursos**.
 En **Notas**, las simulaciones duran mientras el editor está abierto. Las actividades
 del **Calendario** son independientes de las calificaciones.
+
+## Integración de Supabase
+
+Consulta la [preparación y el estado de H4](docs/H4_SUPABASE.md). El modo local
+se usa por defecto. La integración requiere las migraciones de H4 y las
+variables publicables de `.env.example` configuradas en `.env.local`.

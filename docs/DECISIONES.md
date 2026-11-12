@@ -15,3 +15,7 @@ Anotar aquí decisiones no críticas adoptadas para avanzar, con fecha, alternat
 | 2026-11-12 | Políticas RLS por propietario y claves foráneas compuestas | Aísla los registros y protege los vínculos incluso si una petición usa un identificador de otra cuenta | Sí |
 | 2026-11-12 | Verificación de SQL con PostgreSQL embebido y cuentas sintéticas | Ejecuta las restricciones y políticas localmente. La validación de Auth y de la Data API queda para el entorno Supabase | Sí |
 | 2026-11-12 | El calendario conserva eventos de ciclos archivados | Mantiene el historial académico. Inicio resume únicamente los cursos activos | Sí |
+| 2026-11-12 | Activar Supabase mediante una variable explícita | El modo local sigue disponible mientras se completa la migración y la prueba con dos cuentas | Sí |
+| 2026-11-12 | Escrituras de MiCiclo por diferencia, revisión e identificador de operación | Protege contra reintentos duplicados y conflictos entre sesiones. Mantiene en una transacción los cambios relacionados | Sí |
+| 2026-11-12 | Importar como copia confirmada a una cuenta sin registros | Evita mezclar o duplicar datos y conserva la copia de origen | Sí |
+| 2026-11-12 | Bajas lógicas en Supabase y revocación del borrado directo | Conserva los datos académicos y sus vínculos cuando se retiran de la vista de MiCiclo | Sí |

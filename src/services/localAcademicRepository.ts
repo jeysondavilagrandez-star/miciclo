@@ -29,7 +29,7 @@ function clockTime(value: unknown) {
   return typeof value === 'string' && (value === '' || /^([01]\d|2[0-3]):[0-5]\d$/.test(value))
 }
 
-function validData(data: unknown): data is AcademicData {
+export function validData(data: unknown): data is AcademicData {
   if (!record(data) || typeof data.defaultTarget !== 'number' || !validGrade(data.defaultTarget) ||
     !Array.isArray(data.terms) || !Array.isArray(data.courses) || !Array.isArray(data.activities)) return false
 

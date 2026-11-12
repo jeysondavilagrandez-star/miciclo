@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 import { browserStorage, loadAcademicData, saveAcademicData } from './services/localAcademicRepository'
 import { HomePage } from './components/HomePage'
 import { SettingsPage } from './components/SettingsPage'
@@ -25,6 +26,18 @@ export default function App() {
   function update(data: AcademicData) {
     setSnapshot(saveAcademicData(browserStorage, snapshot, data))
   }
+  return <AcademicWorkspace data={data} onUpdate={update} error={error}
+    account={<p className="mb-5 text-sm text-muted">Modo local · datos guardados en este navegador</p>} />
+}
+
+export function AcademicWorkspace({ data, onUpdate, error, account, busy, retainRemoved }: {
+  data: AcademicData
+  onUpdate: (data: AcademicData) => void
+  error?: string
+  account: ReactNode
+  busy?: boolean
+  retainRemoved?: boolean
+}) {
   return (
     <div className="mx-auto grid min-h-dvh max-w-7xl md:grid-cols-[16rem_minmax(0,1fr)]">
       <a href="#contenido" className="sr-only focus:not-sr-only focus:absolute focus:z-10 focus:bg-white focus:p-3">
@@ -50,16 +63,16 @@ export default function App() {
       </header>
 
       <main id="contenido" tabIndex={-1} className="px-4 py-8 sm:px-8 md:px-12 md:py-14">
-        <p className="mb-5 text-sm text-muted">Modo local · datos guardados en este navegador</p>
+        {account}
         {error && <p role="alert" className="panel error mb-4">{error}</p>}
-        <Routes>
+        <div inert={busy} aria-busy={busy}><Routes>
           <Route path="/" element={<HomePage data={data} />} />
-          <Route path="/cursos" element={<CoursesPage data={data} onUpdate={update} />} />
-          <Route path="/calendario" element={<CalendarPage data={data} onUpdate={(activities) => update({ ...data, activities })} />} />
-          <Route path="/notas" element={<GradesPage courses={data.courses} onUpdate={(course) => update({ ...data, courses: upsertById(data.courses, course) })} />} />
-          <Route path="/ajustes" element={<SettingsPage target={data.defaultTarget} onUpdate={(defaultTarget) => update({ ...data, defaultTarget })} />} />
+          <Route path="/cursos" element={<CoursesPage data={data} onUpdate={onUpdate} retainRemoved={retainRemoved} />} />
+          <Route path="/calendario" element={<CalendarPage data={data} onUpdate={(activities) => onUpdate({ ...data, activities })} />} />
+          <Route path="/notas" element={<GradesPage courses={data.courses} onUpdate={(course) => onUpdate({ ...data, courses: upsertById(data.courses, course) })} />} />
+          <Route path="/ajustes" element={<SettingsPage target={data.defaultTarget} onUpdate={(defaultTarget) => onUpdate({ ...data, defaultTarget })} />} />
           <Route path="*" element={<Page title="Página no encontrada" description="Usa el menú para volver a una sección de MiCiclo." />} />
-        </Routes>
+        </Routes></div>
       </main>
     </div>
   )

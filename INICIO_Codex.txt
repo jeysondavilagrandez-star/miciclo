@@ -1,0 +1,5 @@
+MiCiclo — instrucción inicial para Codex en Windows
+
+He preparado AGENTS.md en la raíz y documentación dentro de docs/.
+
+Lee AGENTS.md, docs/ESPECIFICACION_TECNICA.md, docs/PLAN_DE_EJECUCION.md y docs/ESTADO.md. Examina el proyecto existente y empieza por el primer hito incompleto. Trabaja autónomamente en todas las tareas locales y reversibles, prueba y corrige errores, documenta el avance y detente únicamente en los puntos de intervención definidos o cuando haya un bloqueo técnico real. No realices modificaciones remotas, acciones destructivas, gastos ni despliegues sin mi autorización. Resume solo resultados y decisiones que requieran mi atención.

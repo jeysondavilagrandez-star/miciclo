@@ -9,7 +9,7 @@ import { courseError, removeCourse, removeTerm, termError, upsertById } from './
 
 type Editing = { kind: 'term'; item: Term } | { kind: 'course'; item: Course }
 
-export function CoursesPage({ data, onUpdate }: { data: AcademicData; onUpdate: (data: AcademicData) => void }) {
+export function CoursesPage({ data, onUpdate, retainRemoved }: { data: AcademicData; onUpdate: (data: AcademicData) => void; retainRemoved?: boolean }) {
   const [editing, setEditing] = useState<Editing | null>(null)
   const [deleting, setDeleting] = useState<Editing | null>(null)
   const [error, setError] = useState('')
@@ -85,7 +85,9 @@ export function CoursesPage({ data, onUpdate }: { data: AcademicData; onUpdate: 
 
       {deleting && <section className="panel mt-4" aria-label="Confirmar eliminación">
         <h2>Eliminar {deleting.item.name}</h2>
-        <p className="mt-2">{deleting.kind === 'term'
+        <p className="mt-2">{retainRemoved
+          ? 'Los registros se retirarán de tu vista y se conservarán en la base de datos. Las actividades vinculadas aparecerán como generales.'
+          : deleting.kind === 'term'
           ? 'Se eliminarán el ciclo, sus cursos y sus evaluaciones. Las actividades vinculadas pasarán a ser generales.'
           : 'Se eliminarán el curso y sus evaluaciones. Las actividades vinculadas pasarán a ser generales.'}</p>
         <div className="mt-3 flex flex-wrap gap-2">
